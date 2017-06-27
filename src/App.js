@@ -7,6 +7,7 @@ import Delivering from './components/Delivering'
 import Delivered from './components/Delivered'
 import Refused from './components/Refused'
 import Management from './components/Management'
+import Search from './components/Search'
 import './App.css';
 
 class App extends Component {
@@ -38,7 +39,7 @@ class App extends Component {
 				                "quantity": 15
 				            }
 				        ],
-				        "status": 3
+				        "status": 1
 				    }
 				]
 			})
@@ -48,19 +49,19 @@ class App extends Component {
   render() {
 		const {orders} = this.state
 		var waitingOrders = orders.filter(function(order) {
-			return order.status == 1
+			return order.status === 1
 		})
 
 		var deliveringOrders = orders.filter(function(order) {
-			return order.status == 2
+			return order.status === 2
 		})
 
 		var deliveredOrders = orders.filter(function(order) {
-			return order.status == 3
+			return order.status === 3
 		})
 
 		var refusedOrders = orders.filter(function(order) {
-			return order.status == 4
+			return order.status === 4
 		})
 
 		return (
@@ -68,10 +69,7 @@ class App extends Component {
 				<div className="container">
 		  		<div className="mobile-header text-center">
 						<h3>Giao vận</h3>
-						<div id="mobile-search-form" role="search" className="app-search" action="/m/search">
-			  			<button type="submit" id="search-transport"><i className="fa fa-search"></i></button>
-			  			<input id="mobile-search" type="text" className="form-control" name="query" placeholder="Nhập tên, mã đơn hàng, hoặc sđt để tìm kiếm." />
-						</div>
+						<Search orders={orders}/>
 		  		</div>
 
 					<div className="row">
@@ -84,32 +82,32 @@ class App extends Component {
 									</a>
 			  				</li>
 							  <li className="">
-									<a href="#home-2" data-toggle="tab" aria-expanded="false" className="text-center">
+									<a href="#home-1" data-toggle="tab" aria-expanded="false" className="text-center">
 									  <i className="fa fa-clock-o"></i>
 									  <p className="">Chờ giao ({waitingOrders.length})</p>
 									</a>
 							  </li>
 							  <li className="">
-									<a href="#home-3" data-toggle="tab" aria-expanded="false" className="text-center">
+									<a href="#home-2" data-toggle="tab" aria-expanded="false" className="text-center">
 									  <i className="fa fa-motorcycle"></i>
 									  <p className="">Đang giao ({deliveringOrders.length})</p>
 									</a>
 							  </li>
 							  <li className="">
-									<a href="#home-4" data-toggle="tab" aria-expanded="false" className="text-center">
+									<a href="#home-3" data-toggle="tab" aria-expanded="false" className="text-center">
 									  <i className="fa fa-check-circle-o"></i>
 									  <p className="">Đã giao ({deliveredOrders.length})</p>
 									</a>
 							  </li>
 							  <li className="">
-									<a href="#home-5" data-toggle="tab" aria-expanded="false" className="text-center">
+									<a href="#home-4" data-toggle="tab" aria-expanded="false" className="text-center">
 									  <i className="fa fa-hand-stop-o"></i>
 									  <p className="">Từ chối ({refusedOrders.length})</p>
 									</a>
 							  </li>
 
 							  <li className="">
-									<a href="#home-6" data-toggle="tab" aria-expanded="false" className="text-center">
+									<a href="#home-5" data-toggle="tab" aria-expanded="false" className="text-center">
 									  <i className="fa fa-group"></i>
 									  <p className="">Quản lý ({orders.length})</p>
 									</a>
